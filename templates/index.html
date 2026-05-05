@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Dictionary{% endblock %}
+
+{% block content %}
+
+<style>
+body {
+    background: url("static/image/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+    body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+
+/* Ensure content sits above the overlay */
+nav, .d-flex {
+    position: relative;
+    z-index: 1;
+</style>
+
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">📖 Dictionary</a>
+  </div>
+</nav>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+
+    <div class="text-center" style="width: 100%; max-width: 500px;">
+
+        <h2 class="mb-4 text-light">Search for a word</h2>
+
+        <form method="POST" class="d-flex gap-2 mb-4">
+            <input type="text" name="word" class="form-control form-control-lg" placeholder="Enter a word..." required>
+            <button type="submit" class="btn btn-warning btn-lg">🔍</button>
+        </form>
+
+        {% if meaning %}
+        <div class="card p-4 shadow-lg" style="border-radius: 12px; color: black;">
+            <h5>Meaning</h5>
+            <p>{{ meaning }}</p>
+        </div>
+        {% endif %}
+
+        {% if not meaning %}
+  <p class="text-light">Enter a word to see meaning</p>
+{% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
